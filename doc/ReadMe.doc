@@ -1,0 +1,10 @@
+$Id: ReadMe.doc,v 1.1 2005/02/17 22:47:24 jeffreyphillips Exp $
+
+LibCurlNet.chm contains documentation in MSDN format. The file
+LibCurlNet.ndoc is the documentation file used by NDOC to
+generate LibCurlNet.chm.
+
+If you want to rebuild the documentation after making API changes,
+you'll need to use the NDOC documentation tool available at
+ndoc.sourceforge.net, version 1.3 minimum.
+

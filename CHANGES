@@ -1,0 +1,22 @@
+$Id: CHANGES,v 1.1.1.1 2005/02/17 22:20:29 jeffreyphillips Exp $
+
+libcurl.NET Change Log
+
+Version 1.3 - February 17, 2005
+
+-- Initial public release of the source code on sourceforge.net. 
+-- Updated API to reflect curl 7.13.0
+
+Version 1.2.1 - December 8, 2004
+
+-- Fixed Slist.Append()
+
+Version 1.2 - December 1, 2004
+
+-- Fixed Share callbacks to properly reference GCHandle
+-- Rearranged share and easy cleanup sequences
+-- Multi.Select() uses m_maxFD + 1
+-- Fixed Easy.GetInfo for the DateTime object case!
+-- Fixed Easy.GetInfo to use concrete types for the output parameter
+
+

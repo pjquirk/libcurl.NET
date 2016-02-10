@@ -1,0 +1,29 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "src", "src\src.csproj", "{AEF8DC8B-814F-4C03-B048-55EE0F093496}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "shim", "shim\shim.vcproj", "{F6956C7F-0C1D-4B19-99DE-FB9472859E14}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{AEF8DC8B-814F-4C03-B048-55EE0F093496}.Debug.ActiveCfg = Debug|.NET
+		{AEF8DC8B-814F-4C03-B048-55EE0F093496}.Debug.Build.0 = Debug|.NET
+		{AEF8DC8B-814F-4C03-B048-55EE0F093496}.Release.ActiveCfg = Release|.NET
+		{AEF8DC8B-814F-4C03-B048-55EE0F093496}.Release.Build.0 = Release|.NET
+		{F6956C7F-0C1D-4B19-99DE-FB9472859E14}.Debug.ActiveCfg = Debug|Win32
+		{F6956C7F-0C1D-4B19-99DE-FB9472859E14}.Debug.Build.0 = Debug|Win32
+		{F6956C7F-0C1D-4B19-99DE-FB9472859E14}.Release.ActiveCfg = Release|Win32
+		{F6956C7F-0C1D-4B19-99DE-FB9472859E14}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
