@@ -15,7 +15,6 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF
  * ANY KIND, either express or implied.
  *
- * $Id: AssemblyInfo.cs,v 1.1 2005/02/17 22:47:24 jeffreyphillips Exp $
  **************************************************************************/
 
 using System.Reflection;
@@ -23,13 +22,9 @@ using System.Reflection;
 [assembly: AssemblyCompany("Seaside Research")]
 [assembly: AssemblyCopyright("Copyright (c) 2005, 2016 Jeff Phillips, Patrick Quirk")]
 [assembly: AssemblyProduct("libcurl.NET")]
-[assembly: AssemblyInformationalVersion("1.3.0.0")]
-[assembly: AssemblyFileVersion("1.3.0.0")]
-[assembly: AssemblyVersion("1.3.0.0")]
+[assembly: AssemblyInformationalVersion("1.3.1.0")]
+[assembly: AssemblyFileVersion("1.3.1.0")]
+[assembly: AssemblyVersion("1.3.1.0")]
 [assembly: AssemblyTitle("libcurl.NET by Jeff Phillips")]
 [assembly: AssemblyDescription("libcurl binding for .NET")]
 [assembly: AssemblyCulture("")]
-
-//[assembly:AssemblyDelaySign(false)]
-//[assembly:AssemblyKeyFile("SeasideResearch.keys")]
-
