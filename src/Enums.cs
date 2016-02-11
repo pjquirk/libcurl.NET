@@ -768,7 +768,7 @@ namespace SeasideResearch.LibCurlNet
         /// Pass a <c>bool</c>. If it is <c>true</c>, libcurl will attempt to get
         /// the modification date of the remote document in this operation. This
         /// requires that the remote server sends the time or replies to a time
-        /// querying command. The <see cref="Easy.GetInfo"/> function with the
+        /// querying command. The <see cref="Easy.GetInfo(CURLINFO, ref DateTime)"/> function with the
         /// <see cref="CURLINFO.CURLINFO_FILETIME"/> argument can be used after a
         /// transfer to extract the received time (if any).
         /// </summary>
@@ -1259,9 +1259,9 @@ namespace SeasideResearch.LibCurlNet
         /// <summary>
         /// Pass an <c>object</c> as parameter, referencing data that should be
         /// associated with this <see cref="Easy"/> object. The object can
-        /// subsequently be retrieved using <see cref="Easy.GetInfo"/> with the
-        /// <see cref="CURLINFO.CURLINFO_PRIVATE"/> option. libcurl itself does
-        /// nothing with this data. (Added in 7.10.3) 
+        /// subsequently be retrieved using <see cref="Easy.GetInfo(CURLINFO, ref object)"/> 
+        /// with the <see cref="CURLINFO.CURLINFO_PRIVATE"/> option. libcurl itself
+        /// does nothing with this data. (Added in 7.10.3) 
         /// </summary>
         CURLOPT_PRIVATE                 = 10103,
         /// <summary>
@@ -2059,7 +2059,7 @@ namespace SeasideResearch.LibCurlNet
     /// This enumeration is used to extract information associated with an
     /// <see cref="Easy"/> transfer. Specifically, a member of this
     /// enumeration is passed as the first argument to
-    /// <see cref="Easy.GetInfo"/> specifying the item to retrieve in the
+    /// <see cref="O:Easy.GetInfo"/> specifying the item to retrieve in the
     /// second argument, which is a reference to an <c>int</c>, a
     /// <c>double</c>, a <c>string</c>, a <c>DateTime</c> or an <c>object</c>.
     /// </summary>
