@@ -3,6 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "src", "src\src.csproj", "{AEF8DC8B-814F-4C03-B048-55EE0F093496}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F6956C7F-0C1D-4B19-99DE-FB9472859E14} = {F6956C7F-0C1D-4B19-99DE-FB9472859E14}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "shim", "shim\shim.vcxproj", "{F6956C7F-0C1D-4B19-99DE-FB9472859E14}"
 EndProject
