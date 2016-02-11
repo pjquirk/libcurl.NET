@@ -667,13 +667,13 @@ namespace SeasideResearch.LibCurlNet
         /// <summary>
         /// Pass a file name as <c>string</c>. This will make libcurl write all
         /// internally known cookies to the specified file when
-        /// <see cref="Easy.Cleanup"/> is called. If no cookies are known, no file
+        /// <see cref="Easy.Dispose()"/> is called. If no cookies are known, no file
         /// will be created. Using this option also enables cookies for this
         /// session, so if you for example follow a location it will make matching
         /// cookies get sent accordingly.
         /// <note>
         /// If the cookie jar file can't be created or written to
-        /// (when <see cref="Easy.Cleanup"/> is called), libcurl will not and
+        /// (when <see cref="Easy.Dispose()"/> is called), libcurl will not and
         /// cannot report an error for this. Using <c>CURLOPT_VERBOSE</c> or
         /// <c>CURLOPT_DEBUGFUNCTION</c> will get a warning to display, but that
         /// is the only visible feedback you get about this possibly lethal situation.

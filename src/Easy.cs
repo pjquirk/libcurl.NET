@@ -3,6 +3,7 @@
  * Project: libcurl.NET
  *
  * Copyright (c) 2004, 2005 Jeff Phillips (jeff@jeffp.net)
+ *               2016 Patrick Quirk
  *
  * This software is licensed as described in the file LICENSE.md, which you
  * should have received as part of this distribution.
@@ -32,7 +33,7 @@ namespace SeasideResearch.LibCurlNet
 	/// (such as <c>CURLOPT_WRITEFUNCTION</c> and <c>CURLOPT_READFUNCTION</c>)
 	/// are implemented.
 	/// </remarks>
-	public class Easy
+	public class Easy : IDisposable
 	{
         // constants (used internally only)
         private const int CURLOPTTYPE_OBJECTPOINT   = 10000;
@@ -379,7 +380,7 @@ namespace SeasideResearch.LibCurlNet
         /// <summary>
         /// Cleanup unmanaged resources.
         /// </summary>
-        public void Cleanup()
+        public void Dispose()
         {
             GC.SuppressFinalize(this);
             Dispose(true);
