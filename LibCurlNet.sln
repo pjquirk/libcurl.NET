@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "src", "src\src.csproj", "{A
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "shim", "shim\shim.vcxproj", "{F6956C7F-0C1D-4B19-99DE-FB9472859E14}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tests", "tests\tests.csproj", "{FBB54680-5447-4548-BDCF-9DB6F438C345}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,14 @@ Global
 		{F6956C7F-0C1D-4B19-99DE-FB9472859E14}.Release|Any CPU.Build.0 = Release|Win32
 		{F6956C7F-0C1D-4B19-99DE-FB9472859E14}.Release|x86.ActiveCfg = Release|Win32
 		{F6956C7F-0C1D-4B19-99DE-FB9472859E14}.Release|x86.Build.0 = Release|Win32
+		{FBB54680-5447-4548-BDCF-9DB6F438C345}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBB54680-5447-4548-BDCF-9DB6F438C345}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBB54680-5447-4548-BDCF-9DB6F438C345}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FBB54680-5447-4548-BDCF-9DB6F438C345}.Debug|x86.Build.0 = Debug|Any CPU
+		{FBB54680-5447-4548-BDCF-9DB6F438C345}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBB54680-5447-4548-BDCF-9DB6F438C345}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBB54680-5447-4548-BDCF-9DB6F438C345}.Release|x86.ActiveCfg = Release|Any CPU
+		{FBB54680-5447-4548-BDCF-9DB6F438C345}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
