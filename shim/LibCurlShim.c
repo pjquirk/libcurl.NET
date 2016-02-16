@@ -217,8 +217,9 @@ static int progress_callback_impl(void* pvThis, double dlTotal,
 
     if (!pnDelegates)
         return 0; 
-    fpProgDel = (FARPROC)pnDelegates[2];
-    return fpProgDel(pvThis, dlTotal, dlNow, ulTotal, ulNow);
+
+	fpProgDel = (FARPROC)pnDelegates[2];
+	return (int)fpProgDel(pvThis, dlTotal, dlNow, ulTotal, ulNow);
 }
 
 static int debug_callback_impl(void* pvCurl, int infoType,
@@ -232,7 +233,7 @@ static int debug_callback_impl(void* pvCurl, int infoType,
     if (!pnDelegates)
         return 0; 
     fpDebugDel = (FARPROC)pnDelegates[3];
-    return fpDebugDel(infoType, szMsg, msgSize, pvThis);
+    return (int)fpDebugDel(infoType, szMsg, msgSize, pvThis);
 }
 
 static size_t header_callback_impl(char* szptr, size_t sz,
@@ -259,7 +260,7 @@ static int ssl_ctx_callback_impl(void* pvCurl, void* ctx, void* pvThis)
     if (!pnDelegates)
         return 0; 
     fpSslCtxDel = (FARPROC)pnDelegates[5];
-    return fpSslCtxDel(ctx, pvThis);
+    return (int)fpSslCtxDel(ctx, pvThis);
 }
 
 static int ioctl_callback_impl(void* pvCurl, int cmd, void* pvThis)
@@ -272,7 +273,7 @@ static int ioctl_callback_impl(void* pvCurl, int cmd, void* pvThis)
     if (!pnDelegates)
         return 0;
     fpIoctlDel = (FARPROC)pnDelegates[6];
-    return fpIoctlDel(cmd, pvThis);
+    return (int)fpIoctlDel(cmd, pvThis);
 }
 
 __declspec(dllexport) int curl_shim_install_delegates(void* handle,
@@ -472,7 +473,7 @@ __declspec(dllexport) int curl_shim_multi_fdset(void* pvMulti,
 __declspec(dllexport) int curl_shim_select(int maxFD, void* pvfdSets,
     int timeoutMillis)
 {
-    int retVal;
+    INT_PTR retVal;
     struct timeval timeout;
     FARPROC fpSelect = (FARPROC)GetProcAddress(g_hModSock, "select");
     fd_set* pfdSets = (fd_set*)pvfdSets;
@@ -481,7 +482,7 @@ __declspec(dllexport) int curl_shim_select(int maxFD, void* pvfdSets,
     timeout.tv_usec = (timeoutMillis % 1000) * 1000;
     retVal = fpSelect(maxFD, &pfdSets[0], &pfdSets[1], &pfdSets[2],
         &timeout);    
-    return retVal;
+    return (int)retVal;
 }
 
 __declspec(dllexport) void* curl_shim_multi_info_read(void* pvHandle,
