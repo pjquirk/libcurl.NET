@@ -46,8 +46,8 @@
     <TargetName>LibCurlShim</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>Release\</OutDir>
-    <IntDir>Release\</IntDir>
+    <OutDir>Release\x86\</OutDir>
+    <IntDir>Release\x86\</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <TargetName>LibCurlShim</TargetName>
   </PropertyGroup>
