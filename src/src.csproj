@@ -140,11 +140,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\shim\Release\LibCurlShim.dll">
+    <None Include="..\shim\$(Platform)\$(Configuration)\LibCurlShim.dll">
       <Link>LibCurlShim.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\shim\Release\LibCurlShim.pdb">
+    <None Include="..\shim\$(Platform)\$(Configuration)\LibCurlShim.pdb">
       <Link>LibCurlShim.pdb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
