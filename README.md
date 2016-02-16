@@ -1,3 +1,25 @@
+# libcurl.NET
+This is a fork/update of the 2005 package of the same name by Jeff Phillips, hosted [here](https://sourceforge.net/projects/libcurl-net/).  
+
+## What I've Changed
+- Updated the native cURL libraries to version 7.40.0
+  - The native cURL libraries were built using [Curl for Windows](https://github.com/peters/curl-for-windows) and statically linked into a single DLL, `libcurl.dll`.  The native libraries are linked against the VS 2012 toolset. 
+- Added an x64 configuration
+  - Doing this required breaking [`curl_shim_formadd`](https://github.com/pjquirk/libcurl.NET/blob/9dc19b98f941e122a477e3fc767b6bddbdf59777/shim/LibCurlShim.c#L412) since the [`__asm` keyword is not supported by the compiler in x64 builds](http://mariusbancila.ro/blog/2010/10/17/no-more-inline-asm-in-vc-on-x64/) (and it wouldn't be correct for x64 architecture anyways).
+
+## TODO
+- Upload to Nuget
+- Create a different package distribution that uses [Fody Costura](https://github.com/Fody/Costura) to embed the native cURL and shim libraries in the C# assembly, making distribution easier.
+- Update the API to be friendlier, and expose any functionality added between 7.13.0 and 7.40.0 (roughly a decade).
+- Fix `curl_shim_formadd` to not use inline assembly.
+- Statically-link libcurl into the shim so I don't need both, and so I can get rid of the `GetProcAddress` calls that it performs.
+- Add more/better tests.  Now I just have a few smoke tests to make sure things aren't horribly broken.
+- Make an easier process for updating the cURL native libraries.
+
+
+_Original README from Jeff Phillips is below:_
+
+--------
 $Id: README,v 1.1.1.1 2005/02/17 22:20:29 jeffreyphillips Exp $
 
 libcurl.NET 1.3 (c) 2004, 2005 Jeff Phillips jeff@jeffp.net
