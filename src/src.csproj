@@ -116,8 +116,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\lib\libcurl.dll">
+    <None Include="..\lib\$(Platform)\libcurl.dll">
       <Link>libcurl.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\lib\$(Platform)\libcurl.pdb">
+      <Link>libcurl.pdb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
