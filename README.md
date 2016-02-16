@@ -10,7 +10,7 @@ This is a fork/update of the 2005 package of the same name by Jeff Phillips, hos
 ## TODO
 - Upload to Nuget
 - Create a different package distribution that uses [Fody Costura](https://github.com/Fody/Costura) to embed the native cURL and shim libraries in the C# assembly, making distribution easier.
-- Update the API to be friendlier, and expose any functionality added between 7.13.0 and 7.40.0 (roughly a decade).
+- Update the API to be friendlier, and expose any functionality added between [7.13.0 and 7.40.0](https://curl.haxx.se/changes.html) (roughly a decade).
 - Fix `curl_shim_formadd` to not use inline assembly.
 - Statically-link libcurl into the shim so I don't need both, and so I can get rid of the `GetProcAddress` calls that it performs.
 - Add more/better tests.  Now I just have a few smoke tests to make sure things aren't horribly broken.
