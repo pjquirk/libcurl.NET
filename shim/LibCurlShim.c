@@ -132,9 +132,10 @@ __declspec(dllexport) char* curl_shim_add_string(void* p, char* pInStr)
 {
     char* pOutStr;
     Seq_T seq = (Seq_T)p;
+	rsize_t size = strlen(pInStr) + 1;
 
-    pOutStr = (char*)malloc(strlen(pInStr) + 1);
-    strcpy(pOutStr, pInStr);
+    pOutStr = (char*)malloc(size);
+    strcpy_s(pOutStr, size, pInStr);
     Seq_addhi(seq, pOutStr);
     return pOutStr;
 }
@@ -155,9 +156,10 @@ __declspec(dllexport) void* curl_shim_add_string_to_slist(
 {
     char* pOutStr;
     List_T list = (List_T)lst;
+	rsize_t size = strlen(pInStr) + 1;
 
-    pOutStr = (char*)malloc(strlen(pInStr) + 1);
-    strcpy(pOutStr, pInStr);
+    pOutStr = (char*)malloc(size);
+    strcpy_s(pOutStr, size, pInStr);
     return List_push(list, (void*)pOutStr);
 }
 
