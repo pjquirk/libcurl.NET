@@ -42,7 +42,7 @@ static int cmpatom(const void *x, const void *y) {
 	return x != y;
 }
 static unsigned hashatom(const void *key) {
-	return (unsigned long)key>>2;
+	return (unsigned)(uintptr_t)key>>2;
 }
 T Table_new(int hint,
 	int cmp(const void *x, const void *y),
