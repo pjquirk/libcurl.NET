@@ -396,13 +396,17 @@ __declspec(dllexport) void curl_shim_get_file_time(
     time_t t, int* yy, int* mm, int* dd, int* hh,
     int* mn, int* ss)
 {
-    struct tm* ptm = localtime(&t);
-    *yy = ptm->tm_year + 1900;
-    *mm = ptm->tm_mon + 1;
-    *dd = ptm->tm_mday;
-    *hh = ptm->tm_hour;
-    *mn = ptm->tm_min;
-    *ss = ptm->tm_sec;
+	struct tm result;
+    errno_t error = localtime_s(&result, &t);
+	if (!error)
+	{
+		*yy = result.tm_year + 1900;
+		*mm = result.tm_mon + 1;
+		*dd = result.tm_mday;
+		*hh = result.tm_hour;
+		*mn = result.tm_min;
+		*ss = result.tm_sec;
+	}
 }
 
 __declspec(dllexport) int curl_shim_formadd(int* pvPosts,
