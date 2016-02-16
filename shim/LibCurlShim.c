@@ -412,6 +412,7 @@ __declspec(dllexport) void curl_shim_get_file_time(
 __declspec(dllexport) int curl_shim_formadd(int* pvPosts,
     void* pvItems, int nCount)
 {
+/*
     FARPROC fp = GetProcAddress(g_hModCurl, "curl_formadd");
     int argPairs = (nCount - 1) / 2 - 1;
     int stackFix = sizeof(int) * (nCount + 2);
@@ -439,8 +440,8 @@ Args:   mov  eax, [ebx + 8 * ecx + 4]   ; argpair->value
         mov  retVal, eax                ; store the return value
         add  esp, stackFix              ; fix the stack
     }
-
-    return retVal;    
+*/
+    return (int)(ENOSYS);    
 }
 
 __declspec(dllexport) void* curl_shim_alloc_fd_sets()
