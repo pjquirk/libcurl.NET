@@ -13,20 +13,34 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tests", "tests\tests.csproj
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AEF8DC8B-814F-4C03-B048-55EE0F093496}.Debug|x64.ActiveCfg = Debug|x64
+		{AEF8DC8B-814F-4C03-B048-55EE0F093496}.Debug|x64.Build.0 = Debug|x64
 		{AEF8DC8B-814F-4C03-B048-55EE0F093496}.Debug|x86.ActiveCfg = Debug|x86
 		{AEF8DC8B-814F-4C03-B048-55EE0F093496}.Debug|x86.Build.0 = Debug|x86
+		{AEF8DC8B-814F-4C03-B048-55EE0F093496}.Release|x64.ActiveCfg = Release|x64
+		{AEF8DC8B-814F-4C03-B048-55EE0F093496}.Release|x64.Build.0 = Release|x64
 		{AEF8DC8B-814F-4C03-B048-55EE0F093496}.Release|x86.ActiveCfg = Release|x86
 		{AEF8DC8B-814F-4C03-B048-55EE0F093496}.Release|x86.Build.0 = Release|x86
+		{F6956C7F-0C1D-4B19-99DE-FB9472859E14}.Debug|x64.ActiveCfg = Debug|x64
+		{F6956C7F-0C1D-4B19-99DE-FB9472859E14}.Debug|x64.Build.0 = Debug|x64
 		{F6956C7F-0C1D-4B19-99DE-FB9472859E14}.Debug|x86.ActiveCfg = Debug|Win32
 		{F6956C7F-0C1D-4B19-99DE-FB9472859E14}.Debug|x86.Build.0 = Debug|Win32
+		{F6956C7F-0C1D-4B19-99DE-FB9472859E14}.Release|x64.ActiveCfg = Release|x64
+		{F6956C7F-0C1D-4B19-99DE-FB9472859E14}.Release|x64.Build.0 = Release|x64
 		{F6956C7F-0C1D-4B19-99DE-FB9472859E14}.Release|x86.ActiveCfg = Release|Win32
 		{F6956C7F-0C1D-4B19-99DE-FB9472859E14}.Release|x86.Build.0 = Release|Win32
+		{FBB54680-5447-4548-BDCF-9DB6F438C345}.Debug|x64.ActiveCfg = Debug|x64
+		{FBB54680-5447-4548-BDCF-9DB6F438C345}.Debug|x64.Build.0 = Debug|x64
 		{FBB54680-5447-4548-BDCF-9DB6F438C345}.Debug|x86.ActiveCfg = Debug|x86
 		{FBB54680-5447-4548-BDCF-9DB6F438C345}.Debug|x86.Build.0 = Debug|x86
+		{FBB54680-5447-4548-BDCF-9DB6F438C345}.Release|x64.ActiveCfg = Release|x64
+		{FBB54680-5447-4548-BDCF-9DB6F438C345}.Release|x64.Build.0 = Release|x64
 		{FBB54680-5447-4548-BDCF-9DB6F438C345}.Release|x86.ActiveCfg = Release|x86
 		{FBB54680-5447-4548-BDCF-9DB6F438C345}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
