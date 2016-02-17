@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0"
+         DefaultTargets="Build"
+         xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+    <PropertyGroup>
+        <Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
+        <BuildRoot>$(MSBuildThisFileDirectory)</BuildRoot>
+        <DropDirectory>$(BuildRoot)build\</DropDirectory>
+        <NuGetExe>$(BuildRoot).nuget\NuGet.exe</NuGetExe>
+        <!--<ReleaseNotes>$([System.IO.File]::ReadAllText('$(BuildRoot)ReleaseNotes.md'))</ReleaseNotes>-->
+    </PropertyGroup>
+
+    <ItemGroup>
+<!--
+        <Platforms Include="x86">
+            <DotNet>v3.5</DotNet>
+            <NuGetId>net35</NuGetId>
+        </Platforms>
+-->
+        <Platforms Include="x86">
+            <DotNet>v4.0</DotNet>
+            <NuGetId>net40</NuGetId>
+        </Platforms>
+        <Platforms Include="x86">
+            <DotNet>v4.5</DotNet>
+            <NuGetId>net45</NuGetId>
+        </Platforms>
+<!--
+        <Platforms Include="x64">
+            <DotNet>v3.5</DotNet>
+            <NuGetId>net35</NuGetId>
+        </Platforms>
+-->
+        <Platforms Include="x64">
+            <DotNet>v4.0</DotNet>
+            <NuGetId>net40</NuGetId>
+        </Platforms>
+        <Platforms Include="x64">
+            <DotNet>v4.5</DotNet>
+            <NuGetId>net45</NuGetId>
+        </Platforms>
+    </ItemGroup>
+
+    <Target Name="Clean">
+        <Message Text="Cleaning: $(DropDirectory)" />
+        <ItemGroup>
+            <FilesToDelete Include="$(DropDirectory)**\*"/>
+        </ItemGroup> 
+        <Delete Files="@(FilesToDelete)" ContinueOnError="false" Condition="Exists('$(DropDirectory)')"/>
+        <Message Text="$([MSBuild]::MakeRelative($(BuildRoot), $(NuGetExe)))"/>
+    </Target>
+    
+    <Target Name="Build" Outputs="%(Platforms.DotNet)" DependsOnTargets="Clean">
+        <MakeDir Directories="$(DropDirectory)" Condition="!Exists('$(DropDirectory)')" />
+
+        <!-- Resist the urge to pull out variables for these directories!
+             We need to retain batching in these commands. -->
+        <MSBuild Projects="LibCurlNet.sln"
+                 Properties="TargetFrameworkVersion=%(Platforms.DotNet);Configuration=$(Configuration);Platform=%(Platforms.Identity)"
+                 Targets="Rebuild" />
+        <Exec Command="xcopy &quot;src\bin\%(Platforms.Identity)\$(Configuration)\LibCurlNet.dll&quot; &quot;$(DropDirectory)lib\%(Platforms.NuGetId)\%(Platforms.Identity)\&quot; /Y" ContinueOnError="false" />
+        <Exec Command="xcopy &quot;src\bin\%(Platforms.Identity)\$(Configuration)\LibCurlNet.pdb&quot; &quot;$(DropDirectory)lib\%(Platforms.NuGetId)\%(Platforms.Identity)\&quot; /Y" ContinueOnError="false" />
+        <Exec Command="xcopy &quot;src\bin\%(Platforms.Identity)\$(Configuration)\LibCurlNet.xml&quot; &quot;$(DropDirectory)lib\%(Platforms.NuGetId)\%(Platforms.Identity)\&quot; /Y" ContinueOnError="false" />
+        <Exec Command="xcopy &quot;src\bin\%(Platforms.Identity)\$(Configuration)\LibCurlShim.dll&quot; &quot;$(DropDirectory)build\%(Platforms.Identity)\&quot; /Y" ContinueOnError="false" />
+        <Exec Command="xcopy &quot;src\bin\%(Platforms.Identity)\$(Configuration)\LibCurlShim.pdb&quot; &quot;$(DropDirectory)build\%(Platforms.Identity)\&quot; /Y" ContinueOnError="false" />
+        <Exec Command="xcopy &quot;src\bin\%(Platforms.Identity)\$(Configuration)\libcurl.dll&quot; &quot;$(DropDirectory)build\%(Platforms.Identity)\&quot; /Y" ContinueOnError="false" />
+        <Exec Command="xcopy &quot;src\bin\%(Platforms.Identity)\$(Configuration)\libcurl.pdb&quot; &quot;$(DropDirectory)build\%(Platforms.Identity)\&quot; /Y" ContinueOnError="false" />
+        <Exec Command="xcopy &quot;targets\LibCurlNet.targets&quot; &quot;$(DropDirectory)build\&quot; /Y" ContinueOnError="false" />
+    </Target>
+    
+    <Target Name="Publish" DependsOnTargets="Build">
+        <GetAssemblyIdentity AssemblyFiles="$(DropDirectory)\lib\net40\x64\LibCurlNet.dll">
+            <Output TaskParameter="Assemblies" ItemName="AssemblyIdentities"/>
+        </GetAssemblyIdentity>
+        <PropertyGroup>
+            <PackageVersion>%(AssemblyIdentities.Version)</PackageVersion>
+        </PropertyGroup>
+        
+        <Message Text="Version: $(PackageVersion)"/>
+
+        <Copy SourceFiles="LibCurlNet.nuspec" DestinationFolder="$(DropDirectory)" />
+        <!-- Copy source for symbolsource integration -->
+        <ItemGroup>
+            <SymbolSource Include="src\**\*.cs" />
+        </ItemGroup>
+        <Copy SourceFiles="@(SymbolSource)" DestinationFiles="@(SymbolSource->'$(DropDirectory)src\%(RecursiveDir)%(Filename)%(Extension)')" ContinueOnError="false" SkipUnchangedFiles="true" OverwriteReadOnlyFiles="true" />
+
+        <!-- Finally build the package  -->
+        <Exec Command="&quot;$(NuGetExe)&quot; pack &quot;$(DropDirectory)LibCurlNet.nuspec&quot; -Symbols -OutputDirectory &quot;$(DropDirectory.TrimEnd('\'))&quot; -Version $(PackageVersion)"
+              ContinueOnError="false" />
+    </Target>
+
+</Project>
