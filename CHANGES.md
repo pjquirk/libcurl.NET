@@ -2,6 +2,10 @@ $Id: CHANGES,v 1.1.1.1 2005/02/17 22:20:29 jeffreyphillips Exp $
 
 # libcurl.NET Change Log
 
+## Version 1.4 - February 16, 2016
+- Updated libcurl from 7.13.0 to 7.40.0
+- Added x64 configuration
+
 ## Version 1.3 - February 17, 2005
 - Initial public release of the source code on sourceforge.net. 
 - Updated API to reflect curl 7.13.0
