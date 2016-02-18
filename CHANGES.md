@@ -1,5 +1,3 @@
-$Id: CHANGES,v 1.1.1.1 2005/02/17 22:20:29 jeffreyphillips Exp $
-
 # libcurl.NET Change Log
 
 ## Version 1.4.1 - February 18, 2016
