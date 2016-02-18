@@ -59,18 +59,18 @@
         <MSBuild Projects="LibCurlNet.sln"
                  Properties="TargetFrameworkVersion=%(Platforms.DotNet);Configuration=$(Configuration);Platform=%(Platforms.Identity)"
                  Targets="Rebuild" />
-        <Exec Command="xcopy &quot;src\bin\%(Platforms.Identity)\$(Configuration)\LibCurlNet.dll&quot; &quot;$(DropDirectory)lib\%(Platforms.NuGetId)\%(Platforms.Identity)\&quot; /Y" ContinueOnError="false" />
-        <Exec Command="xcopy &quot;src\bin\%(Platforms.Identity)\$(Configuration)\LibCurlNet.pdb&quot; &quot;$(DropDirectory)lib\%(Platforms.NuGetId)\%(Platforms.Identity)\&quot; /Y" ContinueOnError="false" />
-        <Exec Command="xcopy &quot;src\bin\%(Platforms.Identity)\$(Configuration)\LibCurlNet.xml&quot; &quot;$(DropDirectory)lib\%(Platforms.NuGetId)\%(Platforms.Identity)\&quot; /Y" ContinueOnError="false" />
+        <Exec Command="xcopy &quot;src\bin\%(Platforms.Identity)\$(Configuration)\libcurl.NET.dll&quot; &quot;$(DropDirectory)lib\%(Platforms.NuGetId)\%(Platforms.Identity)\&quot; /Y" ContinueOnError="false" />
+        <Exec Command="xcopy &quot;src\bin\%(Platforms.Identity)\$(Configuration)\libcurl.NET.pdb&quot; &quot;$(DropDirectory)lib\%(Platforms.NuGetId)\%(Platforms.Identity)\&quot; /Y" ContinueOnError="false" />
+        <Exec Command="xcopy &quot;src\bin\%(Platforms.Identity)\$(Configuration)\libcurl.NET.xml&quot; &quot;$(DropDirectory)lib\%(Platforms.NuGetId)\%(Platforms.Identity)\&quot; /Y" ContinueOnError="false" />
         <Exec Command="xcopy &quot;src\bin\%(Platforms.Identity)\$(Configuration)\LibCurlShim.dll&quot; &quot;$(DropDirectory)build\%(Platforms.Identity)\&quot; /Y" ContinueOnError="false" />
         <Exec Command="xcopy &quot;src\bin\%(Platforms.Identity)\$(Configuration)\LibCurlShim.pdb&quot; &quot;$(DropDirectory)build\%(Platforms.Identity)\&quot; /Y" ContinueOnError="false" />
         <Exec Command="xcopy &quot;src\bin\%(Platforms.Identity)\$(Configuration)\libcurl.dll&quot; &quot;$(DropDirectory)build\%(Platforms.Identity)\&quot; /Y" ContinueOnError="false" />
         <Exec Command="xcopy &quot;src\bin\%(Platforms.Identity)\$(Configuration)\libcurl.pdb&quot; &quot;$(DropDirectory)build\%(Platforms.Identity)\&quot; /Y" ContinueOnError="false" />
-        <Exec Command="xcopy &quot;targets\LibCurlNet.targets&quot; &quot;$(DropDirectory)build\&quot; /Y" ContinueOnError="false" />
+        <Exec Command="xcopy &quot;targets\libcurl.NET.targets&quot; &quot;$(DropDirectory)build\&quot; /Y" ContinueOnError="false" />
     </Target>
     
     <Target Name="Publish" DependsOnTargets="Build">
-        <GetAssemblyIdentity AssemblyFiles="$(DropDirectory)\lib\net40\x64\LibCurlNet.dll">
+        <GetAssemblyIdentity AssemblyFiles="$(DropDirectory)\lib\net40\x64\libcurl.NET.dll">
             <Output TaskParameter="Assemblies" ItemName="AssemblyIdentities"/>
         </GetAssemblyIdentity>
         <PropertyGroup>
@@ -79,7 +79,7 @@
         
         <Message Text="Version: $(PackageVersion)"/>
 
-        <Copy SourceFiles="LibCurlNet.nuspec" DestinationFolder="$(DropDirectory)" />
+        <Copy SourceFiles="libcurl.NET.nuspec" DestinationFolder="$(DropDirectory)" />
         <!-- Copy source for symbolsource integration -->
         <ItemGroup>
             <SymbolSource Include="src\**\*.cs" />
@@ -87,7 +87,7 @@
         <Copy SourceFiles="@(SymbolSource)" DestinationFiles="@(SymbolSource->'$(DropDirectory)src\%(RecursiveDir)%(Filename)%(Extension)')" ContinueOnError="false" SkipUnchangedFiles="true" OverwriteReadOnlyFiles="true" />
 
         <!-- Finally build the package  -->
-        <Exec Command="&quot;$(NuGetExe)&quot; pack &quot;$(DropDirectory)LibCurlNet.nuspec&quot; -Symbols -OutputDirectory &quot;$(DropDirectory.TrimEnd('\'))&quot; -Version $(PackageVersion)"
+        <Exec Command="&quot;$(NuGetExe)&quot; pack &quot;$(DropDirectory)libcurl.NET.nuspec&quot; -Symbols -OutputDirectory &quot;$(DropDirectory.TrimEnd('\'))&quot; -Version $(PackageVersion)"
               ContinueOnError="false" />
     </Target>
 
