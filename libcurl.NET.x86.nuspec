@@ -11,9 +11,13 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>32-bit C# bindings for libcurl</description>
     <tags>curl libcurl http ftp x86</tags>
-    <releaseNotes>Version 1.4
+    <releaseNotes>Version 1.4.1 - February 18, 2016
+* Fixed a few x64-related bugs/crashes
+* Created x86 and x64 Nuget packages
+
+Version 1.4 - February 16, 2016
 * Updated libcurl from 7.13.0 to 7.40.0
-* Added x64 configuration 
+* Added x64 configuration
 </releaseNotes>
   </metadata>
 </package>
