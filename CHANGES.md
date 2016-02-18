@@ -4,6 +4,7 @@ $Id: CHANGES,v 1.1.1.1 2005/02/17 22:20:29 jeffreyphillips Exp $
 
 ## Version 1.4.1 - February 18, 2016
 - Fixed a few x64-related bugs/crashes
+- Created x86 and x64 Nuget packages
 
 ## Version 1.4 - February 16, 2016
 - Updated libcurl from 7.13.0 to 7.40.0
