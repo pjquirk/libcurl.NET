@@ -1,15 +1,10 @@
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
-         InitialTargets="LibCurlNetPlatformCheck">
-  <Target Name="LibCurlNetPlatformCheck">
-    <Error Condition="'$(Platform)' != 'x86' And '$(Platform)' != 'x64'"
-           Text="Platform '$(Platform)' is not supported by LibCurlNet.  Only x86 and x64 are supported." />
-  </Target>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)\$(Platform)\libcurl.dll">
+    <None Include="$(MSBuildThisFileDirectory)\libcurl.dll">
       <Link>libcurl.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="$(MSBuildThisFileDirectory)\$(Platform)\LibCurlShim.dll">
+    <None Include="$(MSBuildThisFileDirectory)\LibCurlShim.dll">
       <Link>LibCurlShim.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

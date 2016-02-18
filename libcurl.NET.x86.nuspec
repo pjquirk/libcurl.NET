@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>libcurl.NET</id>
+    <id>libcurl.NET.x86</id>
     <version>1.4.0.0</version>
     <authors>Seaside Research, Jeffrey Phillips, Patrick Quirk</authors>
     <owners>Seaside Research</owners>
@@ -9,8 +9,8 @@
     <licenseUrl>https://github.com/pjquirk/libcurl.NET/blob/master/LICENSE.md</licenseUrl>
     <projectUrl>https://github.com/pjquirk/libcurl.NET</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>C# bindings for libcurl</description>
-    <tags>curl libcurl http ftp</tags>
+    <description>32-bit C# bindings for libcurl</description>
+    <tags>curl libcurl http ftp x86</tags>
     <releaseNotes>Version 1.4
 * Updated libcurl from 7.13.0 to 7.40.0
 * Added x64 configuration 
