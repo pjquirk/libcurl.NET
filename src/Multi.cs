@@ -239,15 +239,16 @@ namespace SeasideResearch.LibCurlNet
                 ref nMsgs);
             if (pInfo != IntPtr.Zero)
             {
+                int msgSize = sizeof(Int32) * 2 + IntPtr.Size;
                 m_multiInfo = new MultiInfo[nMsgs];
                 for (int i = 0; i < nMsgs; i++)
                 {
                     CURLMSG msg = (CURLMSG)Marshal.ReadInt32(
-                        pInfo, i * 12);
+                        pInfo, i * msgSize);
                     IntPtr pEasy = Marshal.ReadIntPtr(
-                        pInfo, i * 12 + 4);
+                        pInfo, i * msgSize + sizeof(Int32));
                     CURLcode code = (CURLcode)Marshal.ReadInt32(
-                        pInfo, i * 12 + 8);
+                        pInfo, i * msgSize + sizeof(Int32) + IntPtr.Size);
                     m_multiInfo[i] = new MultiInfo(msg,
                         (Easy)m_htEasy[pEasy], code);
                 }

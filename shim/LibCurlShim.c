@@ -184,8 +184,8 @@ static size_t write_callback_impl(char* szptr, size_t sz,
 {
     // locate the delegates
     FARPROC fpWriteDel;
-    unsigned int* pnDelegates =
-        (unsigned int*)Table_get(g_delegateTable, pvThis);
+	uintptr_t* pnDelegates =
+        (uintptr_t*)Table_get(g_delegateTable, pvThis);
 
     if (!pnDelegates)
         return 0; 
@@ -198,8 +198,8 @@ static size_t read_callback_impl(void* szptr, size_t sz,
 {
     // locate the delegates
     FARPROC fpReadDel;
-    unsigned int* pnDelegates =
-        (unsigned int*)Table_get(g_delegateTable, pvThis);
+	uintptr_t* pnDelegates =
+        (uintptr_t*)Table_get(g_delegateTable, pvThis);
 
     if (!pnDelegates)
         return 0; 
@@ -212,8 +212,8 @@ static int progress_callback_impl(void* pvThis, double dlTotal,
 {
     // locate the delegates
     FARPROC fpProgDel;
-    unsigned int* pnDelegates =
-        (unsigned int*)Table_get(g_delegateTable, pvThis);
+	uintptr_t* pnDelegates =
+        (uintptr_t*)Table_get(g_delegateTable, pvThis);
 
     if (!pnDelegates)
         return 0; 
@@ -227,8 +227,8 @@ static int debug_callback_impl(void* pvCurl, int infoType,
 {
     // locate the delegates
     FARPROC fpDebugDel;
-    unsigned int* pnDelegates =
-        (unsigned int*)Table_get(g_delegateTable, pvThis);
+	uintptr_t* pnDelegates =
+        (uintptr_t*)Table_get(g_delegateTable, pvThis);
 
     if (!pnDelegates)
         return 0; 
@@ -241,8 +241,8 @@ static size_t header_callback_impl(char* szptr, size_t sz,
 {
     // locate the delegates
     FARPROC fpHeaderDel;
-    unsigned int* pnDelegates =
-        (unsigned int*)Table_get(g_delegateTable, pvThis);
+	uintptr_t* pnDelegates =
+        (uintptr_t*)Table_get(g_delegateTable, pvThis);
 
     if (!pnDelegates)
         return 0; 
@@ -254,8 +254,8 @@ static int ssl_ctx_callback_impl(void* pvCurl, void* ctx, void* pvThis)
 {
     // locate the delegates
     FARPROC fpSslCtxDel;
-    unsigned int* pnDelegates =
-        (unsigned int*)Table_get(g_delegateTable, pvThis);
+	uintptr_t* pnDelegates =
+        (uintptr_t*)Table_get(g_delegateTable, pvThis);
 
     if (!pnDelegates)
         return 0; 
@@ -267,8 +267,8 @@ static int ioctl_callback_impl(void* pvCurl, int cmd, void* pvThis)
 {
     // locate the delegates
     FARPROC fpIoctlDel;
-    unsigned int* pnDelegates =
-        (unsigned int*)Table_get(g_delegateTable, pvThis);
+	uintptr_t* pnDelegates =
+        (uintptr_t*)Table_get(g_delegateTable, pvThis);
 
     if (!pnDelegates)
         return 0;
@@ -285,14 +285,14 @@ __declspec(dllexport) int curl_shim_install_delegates(void* handle,
     CPROC pcp = (CPROC)GetProcAddress(g_hModCurl, "curl_easy_setopt");
 
     // install all delegates through here when this works
-    unsigned int* pnDelegates = malloc(7 * sizeof(unsigned int));
-    pnDelegates[0] = (unsigned int)pvWriteDel;
-    pnDelegates[1] = (unsigned int)pvReadDel;
-    pnDelegates[2] = (unsigned int)pvProgDel;
-    pnDelegates[3] = (unsigned int)pvDebugDel;
-    pnDelegates[4] = (unsigned int)pvHeaderDel;
-    pnDelegates[5] = (unsigned int)pvSSLContextDel;
-    pnDelegates[6] = (unsigned int)pvIoctlDel;
+	uintptr_t* pnDelegates = malloc(7 * sizeof(uintptr_t));
+    pnDelegates[0] = (uintptr_t)pvWriteDel;
+    pnDelegates[1] = (uintptr_t)pvReadDel;
+    pnDelegates[2] = (uintptr_t)pvProgDel;
+    pnDelegates[3] = (uintptr_t)pvDebugDel;
+    pnDelegates[4] = (uintptr_t)pvHeaderDel;
+    pnDelegates[5] = (uintptr_t)pvSSLContextDel;
+    pnDelegates[6] = (uintptr_t)pvIoctlDel;
 
     // add to the table (need to serialize access)
     EnterCriticalSection(&g_csDelegateTable);
@@ -333,8 +333,8 @@ static void lock_callback_impl(void* pvHandle, int data,
 {
     // locate the delegates
     FARPROC fpLockDel;
-    unsigned int* pnDelegates =
-        (unsigned int*)Table_get(g_shareDelegateTable, pvThis);
+	uintptr_t* pnDelegates =
+        (uintptr_t*)Table_get(g_shareDelegateTable, pvThis);
 
     if (pnDelegates)
     {
@@ -348,8 +348,8 @@ static void unlock_callback_impl(void* pvHandle, int data,
 {
     // locate the delegates
     FARPROC fpUnlockDel;
-    unsigned int* pnDelegates =
-        (unsigned int*)Table_get(g_shareDelegateTable, pvThis);
+	uintptr_t* pnDelegates =
+        (uintptr_t*)Table_get(g_shareDelegateTable, pvThis);
 
     if (pnDelegates)
     {
@@ -365,9 +365,9 @@ __declspec(dllexport) int curl_shim_install_share_delegates(
     CPROC pcp = (CPROC)GetProcAddress(g_hModCurl, "curl_share_setopt");
 
     // install delegates
-    unsigned int* pnDelegates = malloc(2 * sizeof(unsigned int));
-    pnDelegates[0] = (unsigned int)pvLockDel;
-    pnDelegates[1] = (unsigned int)pvUnlockDel;
+	uintptr_t* pnDelegates = malloc(2 * sizeof(uintptr_t));
+    pnDelegates[0] = (uintptr_t)pvLockDel;
+    pnDelegates[1] = (uintptr_t)pvUnlockDel;
 
     // add to the table, with serialized access
     EnterCriticalSection(&g_csShareDelegateTable);
@@ -498,9 +498,11 @@ __declspec(dllexport) void* curl_shim_multi_info_read(void* pvHandle,
     CPVPROC pcp = (CPVPROC)GetProcAddress(g_hModCurl,
         "curl_multi_info_read");
     void* pvItem;
-    int i, nLocalMsgs, j = 0;
-    unsigned int *pnReturn = NULL;
-    unsigned int *pnItem;
+    int i, nLocalMsgs = 0;
+	uintptr_t* pnReturn = NULL;
+	uintptr_t* pnReturnWrite = NULL;
+	uintptr_t* pnItem;
+	const size_t msgSize = (2 * sizeof(int)) + sizeof(uintptr_t);
 
     *nMsgs = 0;
     while ((pvItem = pcp(pvHandle, &nLocalMsgs)) != NULL)
@@ -509,14 +511,20 @@ __declspec(dllexport) void* curl_shim_multi_info_read(void* pvHandle,
     *nMsgs = List_length(lst);
     if (*nMsgs == 0)
         return NULL;
-    pnReturn = (unsigned int*)malloc(3 * (*nMsgs) * sizeof(unsigned int));
+
+    pnReturn = (uintptr_t*)malloc((*nMsgs) * msgSize);
     for (i = 0; i < (*nMsgs); i++)
     {
         lst = List_pop(lst, (void**)&pnItem);
-        pnReturn[j++] = pnItem[0];
-        pnReturn[j++] = pnItem[1];
-        pnReturn[j++] = pnItem[2];            
-    }
+		*pnReturnWrite = *pnItem;  // CURLMSG (enum)
+		pnReturnWrite += sizeof(int);
+
+		*pnReturnWrite = *(pnItem + sizeof(int));  // CURL* (easy handle pointer)
+		pnReturnWrite += sizeof(uintptr_t);
+
+		*pnReturnWrite = *(pnItem + sizeof(int) + sizeof(uintptr_t));  // CURLcode (enum)
+		pnReturnWrite += sizeof(int);
+	}
     List_free(&lst);
     return pnReturn;
 }
