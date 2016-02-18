@@ -20,14 +20,13 @@
 using System;
 using System.Collections;
 using System.Runtime.InteropServices;
-using System.Threading;
 
 namespace SeasideResearch.LibCurlNet
 {
 	/// <summary>
 	/// Implements the <c>curl_multi_xxx</c> API.
 	/// </summary>
-	public class Multi
+	public class Multi : IDisposable
 	{
         // private members
         IntPtr      m_pMulti;
@@ -36,6 +35,8 @@ namespace SeasideResearch.LibCurlNet
         MultiInfo[] m_multiInfo;
         bool        m_bGotMultiInfo;
         Hashtable   m_htEasy;
+	    bool        disposed;
+
 
         /// <summary>
         /// Constructor
@@ -59,40 +60,50 @@ namespace SeasideResearch.LibCurlNet
             m_htEasy = new Hashtable();
         }
 
-        /// <summary>
-        /// Destructor
-        /// </summary>
-        ~Multi()
-        {
-            Dispose(false);
-        }
+	    /// <summary>
+	    /// Destructor
+	    /// </summary>
+	    ~Multi()
+	    {
+	        Dispose(false);
+	    }
 
-        void Dispose(bool disposing)
-        {
-            lock(this) {
-                // if (disposing) // managed member cleanup
-                // unmanaged cleanup
-                if (m_pMulti != IntPtr.Zero)
-                {
-                    External.curl_multi_cleanup(m_pMulti);
-                    m_pMulti = IntPtr.Zero;
-                }
-                if (m_fdSets != IntPtr.Zero)
-                {
-                    External.curl_shim_free_fd_sets(m_fdSets);
-                    m_fdSets = IntPtr.Zero;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Cleanup unmanaged resources.
+	    /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
-        public void Cleanup()
-        {
-            GC.SuppressFinalize(this);
-            Dispose(true);
-        }
+	    public void Dispose()
+	    {
+	        Dispose(true);
+	        GC.SuppressFinalize(this);
+	    }
+
+	    /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        /// <param name="disposing"><c>true</c> if managed resources should be disposed.</param>
+	    protected virtual void Dispose(bool disposing)
+	    {
+	        if (!disposed)
+	        {
+	            lock (this)
+	            {
+	                // if (disposing) // managed member cleanup
+	                // unmanaged cleanup
+	                if (m_pMulti != IntPtr.Zero)
+	                {
+	                    External.curl_multi_cleanup(m_pMulti);
+	                    m_pMulti = IntPtr.Zero;
+	                }
+	                if (m_fdSets != IntPtr.Zero)
+	                {
+	                    External.curl_shim_free_fd_sets(m_fdSets);
+	                    m_fdSets = IntPtr.Zero;
+	                }
+	            }
+
+	            disposed = true;
+	        }
+	    }
 
         private void EnsureHandle()
         {
