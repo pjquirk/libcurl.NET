@@ -1574,6 +1574,10 @@ namespace SeasideResearch.LibCurlNet
         /// </summary>
         CURLOPT_SSL_VERIFYPEER          = 64,
         /// <summary>
+        /// SSL behavior options see <see cref="SSLOptions"/>
+        /// </summary>
+        CURLOPT_SSL_OPTIONS = 216,
+        /// <summary>
         /// Not supported.
         /// </summary>
         CURLOPT_STDERR                  = 10037,
@@ -2601,5 +2605,33 @@ namespace SeasideResearch.LibCurlNet
         /// End-of-enumeration marker, not used.
         /// </summary>
         CURLM_LAST                = 5
-    };
+    }
+
+    /// <summary>
+    /// SSL behavior options
+    /// </summary>
+    public enum SSLOptions
+    {
+        /// <summary>
+        /// Tells libcurl to not attempt to use any workarounds for a security flaw in the SSL3 and TLS1.0 protocols. If this option isn't used or this bit is set to 0, the SSL layer libcurl uses may use a work-around for this flaw although it might cause interoperability problems with some (older) SSL implementations. WARNING: avoiding this work-around lessens the security, and by setting this option to 1 you ask for exactly that. This option is only supported for Secure Transport, NSS and OpenSSL.
+        /// </summary>
+        CURLSSLOPT_ALLOW_BEAST = 1 << 0,
+
+        /// <summary>
+        /// Tells libcurl to disable certificate revocation checks for those SSL backends where such behavior is present. This option is only supported for Schannel (the native Windows SSL library), with an exception in the case of Windows' Untrusted Publishers block list which it seems can't be bypassed. (Added in 7.44.0)
+        /// </summary>
+        CURLSSLOPT_NO_REVOKE = 1 << 1,
+        /// <summary>
+        /// ells libcurl to not accept "partial" certificate chains, which it otherwise does by default. This option is only supported for OpenSSL and will fail the certificate verification if the chain ends with an intermediate certificate and not with a root cert. (Added in 7.68.0)
+        /// </summary>
+        CURLSSLOPT_NO_PARTIALCHAIN = 1 << 2,
+        /// <summary>
+        /// Tells libcurl to ignore certificate revocation checks in case of missing or offline distribution points for those SSL backends where such behavior is present. This option is only supported for Schannel (the native Windows SSL library). If combined with CURLSSLOPT_NO_REVOKE, the latter takes precedence. (Added in 7.70.0)
+        /// </summary>
+        CURLSSLOPT_REVOKE_BEST_EFFORT = 1 << 3,
+        /// <summary>
+        /// Tell libcurl to use the operating system's native CA store for certificate verification. Works only on Windows when built to use OpenSSL. This option is experimental and behavior is subject to change. (Added in 7.71.0)
+        /// </summary>
+        CURLSSLOPT_NATIVE_CA = 1 << 4
+    }
 }
